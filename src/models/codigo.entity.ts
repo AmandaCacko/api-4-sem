@@ -1,5 +1,5 @@
 import { Entity, BaseEntity, PrimaryGeneratedColumn, Column } from 'typeorm'
-//import User from './user.entity'
+
 
 @Entity()
 export default class Codigo extends BaseEntity {
@@ -17,5 +17,7 @@ export default class Codigo extends BaseEntity {
 
   @Column()
   dataFim!: Date
+
+
 
 }
