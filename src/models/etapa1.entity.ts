@@ -1,5 +1,6 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column } from 'typeorm'
+import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, /*ManyToOne*/ } from 'typeorm'
 //import User from './user.entity'
+
 
 @Entity()
 export default class Etapa1 extends BaseEntity {
@@ -14,6 +15,12 @@ export default class Etapa1 extends BaseEntity {
 
   @Column()
   cliente?: number
+
+  //@Column({name: 'user_id'})
+  //userId!: number
+
+ // @ManyToOne(() => User, user => user.tasks)
+ // user!: User
 
  
 }
