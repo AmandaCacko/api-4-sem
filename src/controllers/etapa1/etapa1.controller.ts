@@ -5,7 +5,7 @@ import Codigo from '../../models/codigo.entity'
 
 export default class Etapa1Controller {
   static async store (req: Request, res: Response) {
-    const { centro, concessionaria, cliente } = req.body
+    const { centro, concessionaria, cliente, codigo } = req.body;
     //const { userId } = req.headers
 
     //if (!userId) return res.status(401).json({ error: 'Usuário não autenticado' })
@@ -19,7 +19,16 @@ export default class Etapa1Controller {
     if (!cliente) {
         return res.status(400).json({ error: 'A data é obrigatória' })
     }*/
-  
+    
+    if (!codigo || isNaN(Number(codigo))) {
+      return res.status(400).json({ error: 'O código é obrigatório e deve ser um número válido' });
+    }
+
+    const codigoExists = await Codigo.findOneBy({ id: Number(codigo) });
+
+    if (!codigoExists) {
+      return res.status(404).json({ error: 'Código inexistente' });
+    }
     
     const etapa1 = new Etapa1()
     etapa1.centro = centro
@@ -52,4 +61,3 @@ export default class Etapa1Controller {
     }
 
 }
-//
