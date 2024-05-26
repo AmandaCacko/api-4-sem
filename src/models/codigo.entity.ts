@@ -1,5 +1,5 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, /*ManyToOne*/ } from 'typeorm'
-//import User from './user.entity'
+import { Entity, BaseEntity, PrimaryGeneratedColumn, Column } from 'typeorm'
+
 
 @Entity()
 export default class Codigo extends BaseEntity {
@@ -18,10 +18,6 @@ export default class Codigo extends BaseEntity {
   @Column()
   dataFim!: Date
 
-  /*@Column({name: 'user_id'})
-  userId!: number
 
-  @ManyToOne(() => User, user => user.tasks)
-  user!: User*/
 
 }
