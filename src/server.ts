@@ -8,9 +8,9 @@ dotenv.config()
 const app = express()
 const port = process.env.PORT || 3001
 
-app.use(express.json()) // habilita o express para receber dados no formato json
+app.use(express.json()) 
 app.use(cors())
-app.use(routes) // habilita as rotas
+app.use(routes) 
 
 
 app.listen(port, () => {

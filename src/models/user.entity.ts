@@ -1,7 +1,6 @@
 import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm'
 import Token from './token.entity'
 import Task from './task.entity'
-import Address from './address.entity'
 /*import Etapa1 from './etapa1.entity'
 import Codigo from './codigo.entity'*/
 
@@ -13,9 +12,6 @@ export default class User extends BaseEntity {
 
     @OneToMany(() => Task, task => task.user)
     tasks!: Task[]
-    
-    @OneToMany(() => Address, address => address.user)
-    addresses!: Address[]
 
    /* @OneToMany(() => Etapa1, etapa1 => etapa1.user)
     etapas1!: Etapa1[]

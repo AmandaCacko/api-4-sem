@@ -9,7 +9,7 @@ const routes = Router()
 
 routes.use('/auth', authRoutes)
 routes.use('/task', taskRoutes)
-routes.use('/codigo', codigoRoutes) // add routes para funcionar POST
+routes.use('/codigo', codigoRoutes)
 routes.use('/etapa1', etapa1Routes)
 routes.use('/etapa2', etapa2Routes)
 

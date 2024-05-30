@@ -1,24 +1,29 @@
-import { Request, Response, NextFunction } from 'express'
-import Token from '../models/token.entity'
+import { Request, Response, NextFunction } from 'express';
+import Token from '../models/token.entity';
 
-export default async function authMiddleware (req: Request, res: Response, next: NextFunction) {
-  const { authorization } = req.headers
+export default async function authMiddleware(req: Request, res: Response, next: NextFunction) {
+  const { authorization } = req.headers;
 
-  if (!authorization) return res.status(401).json({ error: 'Token não informado' })
+  if (!authorization) return res.status(401).json({ error: 'Token não informado' });
 
-  // Verifica se o token existe
-  const userToken = await Token.findOneBy({ token: authorization })
-  if (!userToken) return res.status(401).json({ error: 'Token inválido' })
+  console.log('Token recebido:', authorization); // Log the received token
 
-  // Verifica se o token expirou
+  // Extract the token from the 'Bearer ' prefix if present
+  const token = authorization.startsWith('Bearer ') ? authorization.slice(7) : authorization;
+
+  // Verify if the token exists in the database
+  const userToken = await Token.findOneBy({ token });
+  if (!userToken) return res.status(401).json({ error: 'Token inválido' });
+
+  // Check if the token has expired
   if (userToken.expiresAt < new Date()) {
-    await userToken.remove()
-    return res.status(401).json({ error: 'Token expirado' })
+    await userToken.remove();
+    return res.status(401).json({ error: 'Token expirado' });
   }
 
-  // Adiciona o id do usuário no header da requisição
-  req.headers.userId = userToken.userId.toString()
+  // Add the userId to the request headers
+  req.headers.userId = userToken.userId.toString();
 
-  // Continua a execução
-  next()
+  // Continue to the next middleware or route handler
+  next();
 }
