@@ -1,26 +1,20 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, /*ManyToOne*/ } from 'typeorm'
-//import User from './user.entity'
-
+import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import Codigo from './codigo.entity';
 
 @Entity()
 export default class Etapa1 extends BaseEntity {
   @PrimaryGeneratedColumn()
-  id!: number
+  id!: number;
 
-  @Column()
-  centro?: number
+  @Column({ nullable: true })
+  centro?: number;
 
-  @Column()
-  concessionaria?: number
+  @Column({ nullable: true })
+  concessionaria?: number;
 
-  @Column()
-  cliente?: number
+  @Column({ nullable: true })
+  cliente?: number;
 
-  //@Column({name: 'user_id'})
-  //userId!: number
-
- // @ManyToOne(() => User, user => user.tasks)
- // user!: User
-
- 
+  @ManyToOne(() => Codigo, codigo => codigo.etapas)
+  codigo!: Codigo;
 }

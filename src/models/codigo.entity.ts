@@ -1,23 +1,23 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column } from 'typeorm'
-
+import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import Etapa1 from './etapa1.entity';
 
 @Entity()
 export default class Codigo extends BaseEntity {
   @PrimaryGeneratedColumn()
-  id!: number
+  id!: number;
 
   @Column()
-  tipo!: string
+  tipo!: string;
 
   @Column()
-  nome!: string
+  nome!: string;
 
   @Column()
-  dataInicio!: Date
+  dataInicio!: Date;
 
   @Column()
-  dataFim!: Date
+  dataFim!: Date;
 
-
-
+  @OneToMany(() => Etapa1, etapa1 => etapa1.codigo)
+  etapas!: Etapa1[];
 }
