@@ -6,7 +6,7 @@ export default class Home extends BaseEntity {
   codigoProcesso!: number
 
   @Column()
-  responsevel!: string
+  responsavel!: string
 
   @Column()
   etapa!: string
