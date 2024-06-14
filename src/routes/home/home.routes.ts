@@ -4,7 +4,9 @@ import homeController from '../../controllers/home/home.controlller'
 
 const homeRoutes = Router()
 
-homeRoutes.get('/:codigoProcesso', authMiddleware, homeController.show)
+homeRoutes.post('/', authMiddleware, homeController.create)
+homeRoutes.get('/', authMiddleware, homeController.index)
+
 
 
 export default homeRoutes
